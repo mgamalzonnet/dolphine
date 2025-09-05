@@ -8,13 +8,13 @@ import i18n from "@/i18n";
 
 const AppProviders = () => (
   <BrowserRouter>
-    <ReduxProvider store={store}>
-      <I18nextProvider i18n={i18n}>
+    {/* <ReduxProvider store={store}>
+      <I18nextProvider i18n={i18n}> */}
         <Routes>
           <Route path="/" element={<div>Home Page</div>} />
         </Routes>
-      </I18nextProvider>
-    </ReduxProvider>
+      {/* </I18nextProvider>
+    </ReduxProvider> */}
   </BrowserRouter>
 );
 
