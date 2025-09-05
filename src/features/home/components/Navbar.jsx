@@ -1,4 +1,4 @@
-import dolphinLogo from "@/assets/Logo/dolphinLogo.png";
+import dolphinLogo from "@/assets/logo/dolphinLogo.png";
 import { Books } from "../../../utils/icons";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../../../components/ui/LanguageSwitcher";
