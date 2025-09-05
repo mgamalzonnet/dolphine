@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 import { AppLayout } from "@/components/layout";
 import withAuth from "@/features/auth/hoc/withAuth";
 import { Overlay, Spinner } from "@/components/feedback";
@@ -10,30 +11,31 @@ const RouteLoadingFallback = () => (
   </Overlay>
 );
 
-const RouteRenderer = ({ route, children }) => {
+// Route renderer component
+const RouteRenderer = ({ route }) => {
   const Component = route.element;
 
   if (!Component) {
-    return children;
+    return <Outlet />;
   }
 
   // For protected routes, wrap with authentication HOC
   const ProtectedComponent = route.protected ? withAuth(Component) : Component;
 
   // Use layout flag to determine if AppLayout should be applied
-  const shouldUseLayout = route.layout !== false; // Default true unless explicitly false
+  const shouldUseLayout = route.layout !== false; // Default to true unless explicitly set to false
 
   return (
     <Suspense fallback={<RouteLoadingFallback />}>
       {shouldUseLayout ? (
         <AppLayout>
           <ProtectedComponent />
-          {children && children} {/* 👈 نخلي الـ nested routes يظهروا منفصلين */}
+          <Outlet /> {/* 👈 nested routes تظهر هنا */}
         </AppLayout>
       ) : (
         <>
           <ProtectedComponent />
-          {children && children}
+          <Outlet />
         </>
       )}
     </Suspense>
