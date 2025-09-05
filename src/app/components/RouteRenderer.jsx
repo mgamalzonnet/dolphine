@@ -28,10 +28,10 @@ const RouteRenderer = ({ route, children }) => {
     <Suspense fallback={<RouteLoadingFallback />}>
       {shouldUseLayout ? (
         <AppLayout>
-          <ProtectedComponent />
+          <ProtectedComponent>{children}</ProtectedComponent>
         </AppLayout>
       ) : (
-        <ProtectedComponent />
+        <ProtectedComponent>{children}</ProtectedComponent>
       )}
     </Suspense>
   );

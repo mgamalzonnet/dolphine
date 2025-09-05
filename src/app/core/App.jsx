@@ -1,20 +1,17 @@
-// import { useLanguageDirection } from "@/hooks/useLanguageDirection";
+import { useLanguageDirection } from "@/hooks/useLanguageDirection";
 
-// // App Components
-// import AppProviders from "./AppProviders";
-// import AppRoutes from "./AppRoutes";
+// App Components
+import AppProviders from "./AppProviders";
+import AppRoutes from "./AppRoutes";
 
-// // Global Components
-// import GlobalLoader from "@/components/feedback/GlobalLoader";
-// import ModalManager from "@/components/feedback/modal/ModalManager";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { routes } from "../routing/routeConfig";
-import { generateRoutes } from "../routing/routeGenerator";
+// Global Components
+import GlobalLoader from "@/components/feedback/GlobalLoader";
+import ModalManager from "@/components/feedback/modal/ModalManager";
 // import { useModal } from "@/components/feedback/modal/useModal";
 
 const App = () => {
   // Initialize language direction
-  // useLanguageDirection();
+  useLanguageDirection();
 
   // Modal hook for examples
   // const {
@@ -27,15 +24,15 @@ const App = () => {
   // } = useModal();
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Generated Routes from Configuration */}
-        {/* {generateRoutes(routes)} */}
+    <AppProviders>
+      <div className="app-container">
+        {/* Global Components */}
+        <GlobalLoader />
+        <ModalManager />
 
-        {/* Catch-all Route - Redirect to Home */}
-        <Route path="*" element={ <div> hello</div>} />
-      </Routes>
-    </BrowserRouter>
+        <AppRoutes />
+      </div>
+    </AppProviders>
   );
 };
 
