@@ -15,13 +15,13 @@ const App = () => {
 
 
   return (
-    <> hi
+    <div> hi
         {/* Global Components */}
-        <GlobalLoader />
-        <ModalManager />
+        {/* <GlobalLoader />
+        <ModalManager /> */}
 
         {/* <AppRoutes /> */}
-    </>
+    </div>
   );
 };
 
