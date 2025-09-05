@@ -1,0 +1,138 @@
+{
+  "common": {
+    "loading": "جاري التحميل...",
+    "ok": "موافق",
+    "cancel": "إلغاء",
+    "back": "رجوع",
+    "next": "التالي",
+    "submit": "إرسال",
+    "save": "حفظ",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "close": "إغلاق",
+    "confirm": "تأكيد",
+    "yes": "نعم",
+    "no": "لا"
+  },
+  "navigation": {
+    "schedule": "الجدول الدراسي",
+    "subscriptions": "الباقات المشترك بها",
+    "login": "تسجيل الدخول",
+    "register": "التسجيل",
+    "logout": "تسجيل الخروج"
+  },
+  "home": {
+    "welcome": "مرحباً بكم في منصة",
+    "platformName": "الدلفين التعليمية",
+    "loginToPlatform": "سجل دخول للمنصة",
+    "forNewAndExistingUsers": "للمستخدمين الجدد والحاليين",
+    "loginNow": "سجل الآن"
+  },
+  "auth": {
+    "loginToAccount": "ادخل لحسابك",
+    "enterPhoneNumber": "أدخل رقم جوالك",
+    "enterPassword": "ادخل الرمز السرى للدخول",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "completingRegistration": "اكمال التسجيل",
+    "loggingIn": "جاري الدخول...",
+    "fullName": "الاسم الكامل",
+    "fullNamePlaceholder": "اكتب اسمك الكامل",
+    "fullNameRequired": "الاسم مطلوب",
+    "grade": "الصف الدراسي",
+    "selectGrade": "اختر الصف الدراسي",
+    "gradeRequired": "الصف الدراسي مطلوب",
+    "grade1": "الصف الأول",
+    "grade2": "الصف الثاني",
+    "grade3": "الصف الثالث",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "ادخل الرمز السرى للدخول",
+    "password6Digits": "كلمة المرور يجب أن تكون 6 أرقام",
+    "passwordNumbersOnly": "كلمة المرور يجب أن تكون أرقام فقط",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+    "passwordsNotMatch": "كلمة المرور غير متطابقة",
+    "inviteCode": "كود الدعوة أو الخصم (اختياري)",
+    "inviteCodePlaceholder": "أدخل كود الدعوة أو الخصم إن وجد",
+    "registering": "جاري التسجيل...",
+    "completeRegistration": "إكمال التسجيل",
+    "verificationCode": "رمز التحقق",
+    "enterVerificationCode": "أدخل رمز التحقق المرسل إلى جوالك",
+    "didntReceiveCode": "لم تستلم الرمز؟",
+    "resendCode": "إعادة إرسال",
+    "resendAfter": "أعد الإرسال بعد",
+    "seconds": "ث",
+    "confirm": "تأكيد"
+  },
+  "subscription": {
+    "active": "فعالة",
+    "trial": "تجريبي",
+    "expired": "منتهي",
+    "cancelled": "ملغاة",
+    "daysLeft": "يوم متبقي",
+    "renewSubscription": "تجديد الاشتراك",
+    "extendSubscription": "تمديد الاشتراك",
+    "requestReactivateSubscription": "طلب إعادة تفعيل الاشتراك",
+    "trialExpiredMessage": "انتهت الفترة التجريبية الخاصة بك مدد الاشتراك لمتابعة الاستفادة",
+    "expiredMessage": "انتهت صلاحية باقتك، اضغط على زر (تجديد الباقة) لتجديدها ومتابعة استخدام خدماتنا",
+    "cancelledMessage": "لقد قمت بتغيير الاشتراك لإعادة التفعيل أرسل طلب عبر الضغط علي زر إعادة تفعيل الاشتراك",
+    "healthPackage": "باقة الصحة العامة",
+    "generalHealth": "الصحة العامة",
+    "englishFoundationPackage": "باقة تأسيس اللغة الإنجليزية (المستوي الأول)",
+    "englishLanguage": "اللغة الانجليزية",
+    "firstGroup": "المجموعة الاولى",
+    "secondGroup": "المجموعة الثانية",
+    "previewWeeklySchedule": "معاينة الجدول الأسبوعي"
+  },
+  "header": {
+    "balance": "الرصيد",
+    "currency": "ريال"
+  },
+  "modal": {
+    "success": "نجح",
+    "warning": "تحذير",
+    "error": "خطأ"
+  },
+  "buttons": {
+    "subscribe": "عرض الباقات",
+    "support": "الدعم",
+    "addPackage": "إضافة باقة"
+  },
+  "lessons": {
+    "viewContent": "عرض المحتوي",
+    "teacher": "المعلم",
+    "group": "المجموعة",
+    "time": "الوقت",
+    "remainingTime": "الوقت المتبقي",
+    "defaultTeacher": "أ.حنان",
+    "sunday": "الأحد",
+    "mounday": "الاثنين",
+    "tuesday": "الثلاثاء",
+    "thursday": "الخميس"
+  },
+  "packages": {
+    "healthPackage": "باقة الصحة العامة",
+    "firstGroup": "المجموعة الاولى",
+    "previewWeeklySchedule": "معاينة الجدول الأسبوعي",
+    "weeklySchedule": "الجدول الأسبوعي",
+    "noLesson": "-"
+  },
+  "mobileNavigation": {
+    "home": "الرئيسية",
+    "content": "المحتوي",
+    "profile": "حسابى"
+
+  },
+  "lesson_content": {
+    "exam": "اختبار الدرس",
+    "title": "محتوي الدرس",
+    "lesson": "الدرس",
+    "summary": "ملخص الدرس",
+    "exercises": "تدريبات الدرس",
+    "watch_recorded": "مشاهدة الدرس المسجل",
+    "attachments": "الملفات والمرفقات",
+    "open_file": "فتح الملف",
+    "download_file": "تنزيل الملف",
+    "start_quiz": "ابدأ الاختبار",
+    "quiz_intro": "ابدأ هذا الاختبار القصير لتتعرف على مستوي فهمك"
+}
+}
