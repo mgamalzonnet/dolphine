@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import store from "@/store";
 import i18n from "@/i18n";
 
-const AppProviders = ({ children }) => (
+const AppProviders = () => (
   <BrowserRouter>
     <ReduxProvider store={store}>
       <I18nextProvider i18n={i18n}>
