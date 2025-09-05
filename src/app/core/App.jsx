@@ -2,7 +2,7 @@ import { useLanguageDirection } from "@/hooks/useLanguageDirection";
 
 // App Components
 import AppProviders from "./AppProviders";
-import RoutesManager  from "./RoutesManager";
+import AppRoutes from "./AppRoutes";
 
 // Global Components
 import GlobalLoader from "@/components/feedback/GlobalLoader";
@@ -21,7 +21,7 @@ const App = () => {
         <GlobalLoader />
         <ModalManager />
 
-        <RoutesManager  />
+        <AppRoutes />
       </div>
     </AppProviders>
   );

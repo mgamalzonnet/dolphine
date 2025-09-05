@@ -7,7 +7,7 @@ import { useAppInitialization } from "@/hooks/useAppInitialization";
 import { routes } from "../routing/routeConfig";
 import { generateRoutes } from "../routing/routeGenerator";
 
-const RoutesManager = () => {
+const AppRoutes = () => {
   // Initialize app data
   useAppInitialization();
 
@@ -17,9 +17,9 @@ const RoutesManager = () => {
       {generateRoutes(routes)}
       
       {/* Catch-all Route - Redirect to Home */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 };
 
-export default RoutesManager;
+export default AppRoutes;
