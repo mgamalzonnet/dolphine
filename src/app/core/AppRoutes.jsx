@@ -12,14 +12,16 @@ const AppRoutes = () => {
   // useAppInitialization();
 
   return (
-    <Routes>
-      {/* Generated Routes from Configuration */}
-      {/* {generateRoutes(routes)} */}
-      <Route path="/" element={<div>Home Page</div>} />
+    <>
+    hello</>
+    // <Routes>
+    //   {/* Generated Routes from Configuration */}
+    //   {/* {generateRoutes(routes)} */}
+    //   <Route path="/" element={<div>Home Page</div>} />
       
-      {/* Catch-all Route - Redirect to Home */}
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-    </Routes>
+    //   {/* Catch-all Route - Redirect to Home */}
+    //   {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+    // </Routes>
   );
 };
 
