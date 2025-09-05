@@ -2,7 +2,7 @@ import { useLanguageDirection } from "@/hooks/useLanguageDirection";
 
 // App Components
 import AppProviders from "./AppProviders";
-import RoutesManager  from "./AppRoutes";
+import RoutesManager  from "./RoutesManager";
 
 // Global Components
 import GlobalLoader from "@/components/feedback/GlobalLoader";

@@ -7,7 +7,7 @@ import { useAppInitialization } from "@/hooks/useAppInitialization";
 import { routes } from "../routing/routeConfig";
 import { generateRoutes } from "../routing/routeGenerator";
 
-const AppRoutes = () => {
+const RoutesManager = () => {
   // Initialize app data
   useAppInitialization();
 
@@ -22,4 +22,4 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes;
+export default RoutesManager;
