@@ -8,8 +8,8 @@
 // import GlobalLoader from "@/components/feedback/GlobalLoader";
 // import ModalManager from "@/components/feedback/modal/ModalManager";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import { routes } from "../routing/routeConfig";
-// import { generateRoutes } from "../routing/routeGenerator";
+import { routes } from "../routing/routeConfig";
+import { generateRoutes } from "../routing/routeGenerator";
 // import { useModal } from "@/components/feedback/modal/useModal";
 
 const App = () => {
