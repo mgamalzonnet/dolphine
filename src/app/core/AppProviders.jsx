@@ -7,13 +7,11 @@ import store from "@/store";
 import i18n from "@/i18n";
 
 const AppProviders = ({ children }) => (
-  <BrowserRouter>
-    <ReduxProvider store={store}>
-      <I18nextProvider i18n={i18n}>
-        {children}
-      </I18nextProvider>
-    </ReduxProvider>
-  </BrowserRouter>
+  <ReduxProvider store={store}>
+    <I18nextProvider i18n={i18n}>
+      <BrowserRouter>{children}</BrowserRouter>
+    </I18nextProvider>
+  </ReduxProvider>
 );
 
 export default AppProviders;
