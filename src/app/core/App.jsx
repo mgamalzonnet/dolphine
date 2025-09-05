@@ -13,15 +13,17 @@ const App = () => {
   // Initialize language direction
   useLanguageDirection();
 
-
   return (
-    <div> hi
+    <AppProviders>
+      <div>
+        {" "}
+        hi
         {/* Global Components */}
         {/* <GlobalLoader />
         <ModalManager /> */}
-
         {/* <AppRoutes /> */}
-    </div>
+      </div>
+    </AppProviders>
   );
 };
 
