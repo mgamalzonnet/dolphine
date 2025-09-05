@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 // Custom Hooks
-import { useAppInitialization } from "@/hooks/useAppInitialization";
+// import { useAppInitialization } from "@/hooks/useAppInitialization";
 
 // Route Configuration and Generator
 // import { routes } from "../routing/routeConfig";
@@ -9,7 +9,7 @@ import { useAppInitialization } from "@/hooks/useAppInitialization";
 
 const AppRoutes = () => {
   // Initialize app data
-  useAppInitialization();
+  // useAppInitialization();
 
   return (
     <Routes>
