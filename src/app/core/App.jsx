@@ -2,7 +2,7 @@ import { useLanguageDirection } from "@/hooks/useLanguageDirection";
 
 // App Components
 import AppProviders from "./AppProviders";
-// import AppRoutes from "./AppRoutes";
+import AppRoutes from "./AppRoutes";
 
 // Global Components
 import GlobalLoader from "@/components/feedback/GlobalLoader";
@@ -13,16 +13,19 @@ const App = () => {
   // Initialize language direction
   useLanguageDirection();
 
+  // Modal hook for examples
+  // const {
+  //   openBuyPackageModal,
+  //   openDetailsModal,
+  //   openConfirmModal,
+  //   openChangeGroupModal,
+  //   openReactivateModal,
+  //   openExtendPackageModal,
+  // } = useModal();
+
   return (
     <AppProviders>
-      <div>
-        {" "}
-        hi
-        {/* Global Components */}
-        {/* <GlobalLoader />
-        <ModalManager /> */}
-        {/* <AppRoutes /> */}
-      </div>
+      <AppRoutes />
     </AppProviders>
   );
 };

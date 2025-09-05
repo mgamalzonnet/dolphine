@@ -1,27 +1,24 @@
-// import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // Custom Hooks
-// import { useAppInitialization } from "@/hooks/useAppInitialization";
+import { useAppInitialization } from "@/hooks/useAppInitialization";
 
 // Route Configuration and Generator
-// import { routes } from "../routing/routeConfig";
-// import { generateRoutes } from "../routing/routeGenerator";
+import { routes } from "../routing/routeConfig";
+import { generateRoutes } from "../routing/routeGenerator";
 
 const AppRoutes = () => {
   // Initialize app data
-  // useAppInitialization();
+  useAppInitialization();
 
   return (
-    <>
-    hello</>
-    // <Routes>
-    //   {/* Generated Routes from Configuration */}
-    //   {/* {generateRoutes(routes)} */}
-    //   <Route path="/" element={<div>Home Page</div>} />
+    <Routes>
+      {/* Generated Routes from Configuration */}
+      {generateRoutes(routes)}
       
-    //   {/* Catch-all Route - Redirect to Home */}
-    //   {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-    // </Routes>
+      {/* Catch-all Route - Redirect to Home */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 };
 
