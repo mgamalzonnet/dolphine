@@ -4,8 +4,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAppInitialization } from "@/hooks/useAppInitialization";
 
 // Route Configuration and Generator
-import { routes } from "../routing/routeConfig";
-import { generateRoutes } from "../routing/routeGenerator";
+// import { routes } from "../routing/routeConfig";
+// import { generateRoutes } from "../routing/routeGenerator";
 
 const AppRoutes = () => {
   // Initialize app data
@@ -14,7 +14,8 @@ const AppRoutes = () => {
   return (
     <Routes>
       {/* Generated Routes from Configuration */}
-      {generateRoutes(routes)}
+      {/* {generateRoutes(routes)} */}
+      <Route path="/" element={<div>Home Page</div>} />
       
       {/* Catch-all Route - Redirect to Home */}
       {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
