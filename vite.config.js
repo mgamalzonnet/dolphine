@@ -11,46 +11,46 @@ export default defineConfig({
       output: {
         manualChunks: (id) => {
           // Vendor chunks
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor-react';
+          if (id.includes("node_modules")) {
+            if (id.includes("react") || id.includes("react-dom")) {
+              return "vendor-react";
             }
-            if (id.includes('react-router')) {
-              return 'vendor-router';
+            if (id.includes("react-router")) {
+              return "vendor-router";
             }
-            if (id.includes('@reduxjs') || id.includes('react-redux')) {
-              return 'vendor-redux';
+            if (id.includes("@reduxjs") || id.includes("react-redux")) {
+              return "vendor-redux";
             }
-            if (id.includes('lucide-react')) {
-              return 'vendor-icons';
+            if (id.includes("lucide-react")) {
+              return "vendor-icons";
             }
-            if (id.includes('html2canvas') || id.includes('jspdf')) {
-              return 'vendor-utils';
+            if (id.includes("html2canvas") || id.includes("jspdf")) {
+              return "vendor-utils";
             }
-            if (id.includes('google-libphonenumber')) {
-              return 'vendor-phone';
+            if (id.includes("google-libphonenumber")) {
+              return "vendor-phone";
             }
-            return 'vendor';
+            return "vendor";
           }
-          
+
           // Feature chunks
-          if (id.includes('/src/features/')) {
-            const feature = id.split('/src/features/')[1]?.split('/')[0];
+          if (id.includes("/src/features/")) {
+            const feature = id.split("/src/features/")[1]?.split("/")[0];
             if (feature) {
               return `feature-${feature}`;
             }
           }
-          
+
           // Component chunks
-          if (id.includes('/src/components/')) {
-            return 'components';
+          if (id.includes("/src/components/")) {
+            return "components";
           }
         },
       },
     },
     chunkSizeWarningLimit: 1000,
-    target: 'esnext',
-    minify: 'esbuild',
+    target: "esnext",
+    minify: "esbuild",
   },
   resolve: {
     alias: {
@@ -60,4 +60,5 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, "./src/utils"),
     },
   },
+  base: "./",
 });
