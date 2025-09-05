@@ -1,4 +1,4 @@
-// import { useLanguageDirection } from "@/hooks/useLanguageDirection";
+import { useLanguageDirection } from "@/hooks/useLanguageDirection";
 
 // App Components
 // import AppProviders from "./AppProviders";
@@ -10,7 +10,7 @@
 // import { useModal } from "@/components/feedback/modal/useModal";
 
 const App = () => {
-  // useLanguageDirection();
+  useLanguageDirection();
 
 
   return (
