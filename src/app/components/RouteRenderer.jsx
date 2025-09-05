@@ -10,7 +10,6 @@ const RouteLoadingFallback = () => (
   </Overlay>
 );
 
-// Route renderer component
 const RouteRenderer = ({ route, children }) => {
   const Component = route.element;
 
@@ -22,16 +21,20 @@ const RouteRenderer = ({ route, children }) => {
   const ProtectedComponent = route.protected ? withAuth(Component) : Component;
 
   // Use layout flag to determine if AppLayout should be applied
-  const shouldUseLayout = route.layout !== false; // Default to true unless explicitly set to false
+  const shouldUseLayout = route.layout !== false; // Default true unless explicitly false
 
   return (
     <Suspense fallback={<RouteLoadingFallback />}>
       {shouldUseLayout ? (
         <AppLayout>
-          <ProtectedComponent>{children}</ProtectedComponent>
+          <ProtectedComponent />
+          {children && children} {/* 👈 نخلي الـ nested routes يظهروا منفصلين */}
         </AppLayout>
       ) : (
-        <ProtectedComponent>{children}</ProtectedComponent>
+        <>
+          <ProtectedComponent />
+          {children && children}
+        </>
       )}
     </Suspense>
   );
