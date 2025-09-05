@@ -16,13 +16,11 @@ const App = () => {
 
   return (
     <AppProviders>
-      <div className="app-container">
         {/* Global Components */}
         <GlobalLoader />
         <ModalManager />
 
         <AppRoutes />
-      </div>
     </AppProviders>
   );
 };
