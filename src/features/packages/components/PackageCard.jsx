@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { STATUS_CONFIG } from "@/constants/STATUS_CONFIG";
 import {
   Calender,
   TelegramCircle,
   WhatsappCircle,
 } from "@/utils/icons";
+// import * as Icons from "@/utils/icons";
+import { STATUS_CONFIG } from "@/constants/STATUS_CONFIG";
 import WeeklySchedulePopup from "./WeeklySchedulePopup";
 import { CardKite, PackagesBorder, Star } from "@/utils/Illustrations";
 
