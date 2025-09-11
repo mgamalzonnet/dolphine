@@ -65,7 +65,7 @@ const PasswordForm = ({ onSubmit, loading, phoneNumber }) => {
                 onChange={field.onChange} // يربط الكمبوننت بالـ form
               />
               {fieldState.error && (
-                <p className="text-red-500 text-sm text-right mt-2 w-full">
+                <p className="text-orangedeep text-left text-sm self-start mt-2 w-full">
                   {fieldState.error.message}
                 </p>
               )}

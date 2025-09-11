@@ -12,6 +12,7 @@ const Packages = () => {
   if (loading) return null;
 
   return (
+
     <div className="py-18 mt-10 md:py-18 px-4 sm:px-6 lg:px-10 lg:pt-30 ">
       {mine.length > 0 ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 py-8">
@@ -23,6 +24,8 @@ const Packages = () => {
                 item={pkg}
                 color={bgColor}
                 image={image}
+                status={pkg.status}
+                daysRemaining={pkg.days_remaining}
               />
             );
           })}
