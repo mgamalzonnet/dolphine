@@ -5,7 +5,7 @@ import {
   TelegramCircle,
   WhatsappCircle,
 } from "@/utils/icons";
-// import * as Icons from "@/utils/icons";
+import * as Icons from "@/utils/icons";
 import { STATUS_CONFIG } from "@/constants/STATUS_CONFIG";
 import WeeklySchedulePopup from "./WeeklySchedulePopup";
 import { CardKite, PackagesBorder, Star } from "@/utils/Illustrations";
@@ -19,7 +19,8 @@ const PackageCard = React.memo(({ item, color, image, status = "active", daysRem
   
 
   // Get the status configuration
-  const config = STATUS_CONFIG[status] || STATUS_CONFIG.active;
+const config = STATUS_CONFIG[status] || STATUS_CONFIG.active;
+const Icon = Icons[config.icon]; // نجيب الأيقونة بالاسم
 
   return (
     <div className="relative w-full mx-auto pl-3 max-w-2xl">
@@ -71,7 +72,7 @@ const PackageCard = React.memo(({ item, color, image, status = "active", daysRem
   
             
             <div className={`flex items-center justify-center gap-2 rounded-3xl px-2 py-1 ${config.color}`}>
-              <config.icon className="w-5" />
+              <Icon className="w-5" />
               <span className="font-semibold text-sm md:text-base">
                 {typeof config.label === "function"
                   ? config.label(daysRemaining)
