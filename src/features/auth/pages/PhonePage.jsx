@@ -12,11 +12,10 @@ import { Overlay, Spinner } from "@/components/feedback";
 const PhonePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { checkPhone, loading, error,  isFullyAuthenticated } = useAuth();
+  const { checkPhone, loading,  isFullyAuthenticated } = useAuth();
   const [phoneNumber, setPhoneNumber] = useState("");
 
   // If we have a token but no user yet, and we're still loading, show loading state
-
 
   // If user is already logged in, redirect to schedule
   if (isFullyAuthenticated()) {
@@ -45,12 +44,15 @@ const PhonePage = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
-    <AuthLayout showBackButton={false}>
+    <AuthLayout handleBack={handleBack} showBackButton={true}>
       <LoginForm
         onSubmit={handlePhoneSubmit}
         loading={loading}
-        error={error}
         setPhoneNumber={setPhoneNumber}
       />
     </AuthLayout>

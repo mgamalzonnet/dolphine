@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 /* RTL Support */
@@ -118,7 +118,6 @@ body {
   -webkit-appearance: none;
   appearance: none;
   /* background: transparent; */
-  cursor: pointer;
 }
 
 .slider::-webkit-slider-track {
@@ -173,4 +172,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 input[type="date"] {
   -moz-appearance: textfield;
+}
+
+/* global.css */
+:root {
+  --btn-radius: 70px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --btn-radius: 55px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --btn-radius: 90px;
+  }
+}
+
+select option:hover {
+  background-color: red  !important ;
+  color: #fff;
+}
+
+#chatwoot-container,
+#chatwoot-launcher {
+  display: none !important;
 }

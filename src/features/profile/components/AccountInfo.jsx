@@ -1,16 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { ProfileCard } from '@/components';
 import { ProfileInputs } from '@/components';
 import { ProfileButtons } from '@/components';
-import flag from "@/assets/authentication/flag.svg";
+import { updateUserGrade } from '@/features/profile/store/profileSlice';
+// import flag from "@/assets/authentication/flag.svg";
 import ChangeGradeModal from '@/components/profile/modal/ChangeGradeModal';
+import { useProfile } from '../hooks/useProfile';
 
 const AccountInfo = ({ user }) => {
-  const [name, setName] = useState("يوستينا صلاح");
-  const [phone, setPhone] = useState("09954321890");
-  const [grade, setGrade] = useState("الصف الأول ابتدائي");
+  const dispatch = useDispatch(); 
+  const { handleUpdateProfile } = useProfile();
+
+  const [name, setName] = useState(user?.name || "");
+  const [phone, setPhone] = useState(user?.phoneNumber || "");
+  const [grade, setGrade] = useState(user?.gradeName || "");
+  const [gradeId, setGradeId] = useState(user?.grade || null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
+  const handleConfirmGrade = async (gradeName, gradeId) => {
+    setGrade(gradeName);
+    setGradeId(gradeId);
+    // await dispatch(updateUserGrade({ userId: user.id, gradeId }));
+    try {
+      await handleUpdateProfile({
+        name,
+        grade: gradeId,
+        _method: "PATCH",
+      });
+      setIsModalOpen(false);
+      setIsModalOpen(false); 
+    } catch (error) {
+      console.error("فشل تحديث الصف:", error);
+    }
+  };
+
   useEffect(() => {
     if (user) {
       setName(user.name || "");
@@ -24,12 +48,16 @@ const AccountInfo = ({ user }) => {
   };
   
   const handleSave = () => {
-    console.log("Saving Changes: ", { name, phone, grade });
-  }
+    handleUpdateProfile({
+      name,
+      grade: gradeId,
+      _method: "PATCH",
+    });
+  };
 
   return (
     <>
-    <ProfileCard className="p-8">
+    <ProfileCard className="p-4 md:p-8">
       <div className="flex flex-col items-center gap-8 h-full">
         <div className="text-center">
           <h3 className="font-bold text-navyteal text-xl md:text-2xl mb-2">
@@ -69,9 +97,9 @@ const AccountInfo = ({ user }) => {
               <ProfileInputs 
                 value={phone}
                 disabled
-                className="border-[#aaaaaa] border-[0.5px]"
+                className="relative border-[#aaaaaa] border-[0.5px] px-10"
               />
-              {/* <div className="absolute top-15 right-4"><img src={flag} alt="flag" /></div> */}
+              {/* <img src={flag} alt="Country" className="absolute top-[52%] md:top-1/2 right-8 w-8 md:w-auto" /> */}
             </div>
           </div>
 
@@ -86,27 +114,27 @@ const AccountInfo = ({ user }) => {
             </div>
             
             <div className="relative">
-              <div className="w-full h-[90px] rounded-[100px] border-[0.5px] border-solid border-[#7a8085] flex items-center justify-between px-8">
+              <div className="w-full py-0 md:py-4 rounded-[100px] border-[0.5px] border-solid border-[#7a8085] flex items-center justify-between px-2 md:px-8">
                 
-                <span className="text-[#5d6062] text-lg font-medium">
+                <span className="text-[#5d6062] text-sm md:text-lg font-medium text-nowrap">
                   {grade}
                 </span>
-                <ProfileButtons variant="outline" size="sm" className="w-[210px] cursor-pointer" onClick={() => setIsModalOpen(true)}>
+                <ProfileButtons variant="outline" size="" className="w-[120px] md:w-[210px] py-2 cursor-pointer my-2 md:my-0" onClick={() => setIsModalOpen(true)}>
                   <img
                     className="w-4 md:w-6"
                     alt="Change"
                     src="https://c.animaapp.com/mf29nm7vjLRxgE/img/bold.svg"
                     />
-                    <span className="text-navyteal text-base font-semibold">تغيير الصف</span>
+                    <span className="text-navyteal text-sm md:text-base font-semibold text-nowrap">تغيير الصف</span>
                 </ProfileButtons>
               </div>
             </div>
           </div>
         </div>
 
-        <ProfileButtons variant="primary" size="md" className="my-8 w-full max-w-6xl cursor-pointer bg-orangedeep hover:bg-btnClicked" onClick={handleSave}>
+        <ProfileButtons variant="primary" size="" className="my-4 md:my-8 py-2 md:py-4 w-full max-w-6xl cursor-pointer bg-orangedeep hover:bg-btnClicked" onClick={handleSave}>
           <img
-            className="w-6 md:w-8"
+            className="w-4 md:w-6"
             alt="Save"
             src="https://c.animaapp.com/mf29nm7vjLRxgE/img/layer-1.svg"
           />
@@ -117,6 +145,7 @@ const AccountInfo = ({ user }) => {
       <ChangeGradeModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
+          onConfirm={handleConfirmGrade}
         />
     </>
   );

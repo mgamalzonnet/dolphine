@@ -7,16 +7,16 @@ import { useDispatch } from "react-redux";
 import { showModal } from "../../../store/modalSlice";
 import { MODAL_TYPES } from "../../../constants/MODAL_TYPES";
 import { Overlay, Spinner } from "@/components/feedback";
+import { verifyOtp } from "../store/authSlice";
 
 const OtpPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { verifyOtp,  isFullyAuthenticated } = useAuth();
+  const { isFullyAuthenticated } = useAuth();
   const { phoneNumber } = location.state || {};
 
   // If we have a token but no user yet, and we're still loading, show loading state
-
 
   // If user is already logged in, redirect to schedule
   if (isFullyAuthenticated()) {

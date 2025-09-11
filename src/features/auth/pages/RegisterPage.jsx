@@ -7,16 +7,18 @@ import { useDispatch } from "react-redux";
 import { showModal } from "../../../store/modalSlice";
 import { MODAL_TYPES } from "../../../constants/MODAL_TYPES";
 import { Overlay, Spinner } from "@/components/feedback";
+import { fetchAllPackages, fetchMyPackages } from "../../packages/store/packagesSlice";
+import { fetchLessons } from "@/features/lessons/store/lessonsSlice";
+import { fetchSubscriptions } from "@/features/subscription/store/subscriptionSlice";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { registerUser, loading, error,  isFullyAuthenticated } = useAuth();
+  const { registerUser, loading, error, isFullyAuthenticated } = useAuth();
   const { phoneNumber } = location.state || {};
 
   // If we have a token but no user yet, and we're still loading, show loading state
-
 
   // If user is already logged in, redirect to schedule
   if (isFullyAuthenticated()) {
@@ -24,10 +26,10 @@ const RegisterPage = () => {
   }
 
   // Redirect if no phone number
-  if (!phoneNumber) {
-    navigate("/auth/phone");
-    return null;
-  }
+  // if (!phoneNumber) {
+  //   navigate("/auth/phone");
+  //   return null;
+  // }
 
   const handleRegisterSubmit = async (data) => {
     const res = await dispatch(
@@ -39,19 +41,34 @@ const RegisterPage = () => {
       })
     );
 
-    if (res?.payload?.success) {
+    if (res?.meta?.requestStatus === "fulfilled") {
+      // navigate("/auth/add");
+           await Promise.all([
+            dispatch(fetchAllPackages()),
+            dispatch(fetchMyPackages()),
+            dispatch(fetchLessons()),
+            dispatch(fetchSubscriptions()),
+          ]);
       navigate("/schedule");
-    } else {
-      dispatch(
-        showModal({
-          type: MODAL_TYPES.WARNING,
-          props: {
-            title: "هنالك خطاء ",
-            message: res.payload || res.error.message,
-          },
-        })
-      );
+      return;
     }
+
+    const payload = res?.payload;
+    const errorMsg =
+      (typeof payload === "string" && payload) ||
+      payload?.error ||
+      res?.error?.message ||
+      "حدث خطأ أثناء التسجيل";
+
+    dispatch(
+      showModal({
+        type: MODAL_TYPES.WARNING,
+        props: {
+          title: "هنالك خطاء ",
+          message: String(errorMsg),
+        },
+      })
+    );
   };
 
   const handleBack = () => {

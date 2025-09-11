@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-const OTPInput = ({ length = 6, type = "text", onChange }) => {
+const OTPInput = ({ length = 6, type = "text", onChange, autoFocusFirst = true }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
   const inputsRef = useRef([]);
   const autoMoving = useRef(false); // 👈 Flag to detect auto focus movement
@@ -72,7 +72,7 @@ const OTPInput = ({ length = 6, type = "text", onChange }) => {
   };
 
   return (
-    <div className="flex gap-4 items-center justify-between w-full">
+    <div className="flex gap-3 items-center justify-between w-full">
       {otp.map((val, i) => (
         <input
           key={i}
@@ -83,12 +83,12 @@ const OTPInput = ({ length = 6, type = "text", onChange }) => {
           onKeyDown={(e) => handleKeyDown(e, i)}
           onPaste={(e) => handlePaste(e, i)}
           onFocus={(e) => handleFocus(e, i)}
-           autoFocus={i === 0} 
+          autoFocus={autoFocusFirst && i === 0}
           inputMode="numeric"
           pattern="[0-9]*"
           className="aspect-square w-full 
                      text-center text-base sm:text-lg md:text-xl lg:text-2xl font-semibold
-                     border border-[#B3B3B3]/50 bg-verifyinputbg rounded-lg 
+                     border border-[#B3B3B3]/30 bg-verifyinputbg rounded-lg 
                      focus:outline-none focus:ring-2 focus:ring-btnClicked"
         />
       ))}

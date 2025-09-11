@@ -1,18 +1,14 @@
-// External libs
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
-// Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// Assets & utils
 import notFoundImage from "@/assets/images/notFoundLessons.png";
 import { getNext7Days } from "../../../utils/dateHelpers";
 
-// Local components
 import LessonCard from "./LessonCard";
 import SliderHeader from "./SliderHeader";
 import { useLessons } from "../hooks/useLessons";
@@ -23,8 +19,8 @@ const ScheduleSlider = () => {
   const days = getNext7Days();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const NAVBAR_HEIGHT = 64; // px
-  const MOBILE_BAR_HEIGHT = 56; // px
+  const NAVBAR_HEIGHT = 64;
+  const MOBILE_BAR_HEIGHT = 56;
 
   const renderNoLessons = () => (
     <div
@@ -34,29 +30,26 @@ const ScheduleSlider = () => {
       <img
         src={notFoundImage}
         alt="No lessons found"
-        className="max-h-full w-auto object-contain"
+        className="max-h-full w-auto object-contain mt-12"
       />
     </div>
   );
+
   if (loading) return null;
 
   return (
-    <div className="mx-auto  px-4 sm:px-6 lg:px-10">
+    <div className="mx-auto px-4 sm:px-6 lg:px-10">
       <SliderHeader
         dayLabel={days[activeIndex].label}
         dayDate={days[activeIndex].date}
       />
 
-      <div className="slider py-3">
+      <div className="slider py-6">
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={30}
           slidesPerView={1}
           navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            1024: { slidesPerView: 1 },
-          }}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         >
           {days.map((day) => {
@@ -67,23 +60,24 @@ const ScheduleSlider = () => {
 
             return (
               <SwiperSlide key={day.date}>
-                <div className="flex flex-col">
-                  {lessonsForDay.length > 0
-                    ? lessonsForDay.map((lesson, i) => {
-
-
-                       const { image, bgColor } = subjectFactory(lesson.subject);
-                        return (
-                          <LessonCard
-                            key={`${lesson.title}-${i}`}
-                            item={lesson}
-                            image={image}
-                            color={bgColor}
-                          />
-                        );
-                      })
-                    : renderNoLessons()}
-                </div>
+                {lessonsForDay.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+                    {lessonsForDay.map((lesson, i) => {
+                      const { image, bgColor } = subjectFactory(lesson.subject);
+                      return (
+                        <LessonCard
+                          key={`${lesson.title}-${i}`}
+                          item={lesson}
+                          image={image}
+                          color={bgColor}
+                           lessonDate={day.date}  
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  renderNoLessons()
+                )}
               </SwiperSlide>
             );
           })}

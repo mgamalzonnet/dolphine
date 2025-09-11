@@ -7,7 +7,7 @@ import FormTitle from "./FormTitle";
 import PhoneField from "./PhoneField";
 import { validatePhone } from "../../../utils/phoneValidation";
 
-const LoginForm = ({ onSubmit, loading, error, setPhoneNumber }) => {
+const LoginForm = ({ onSubmit, loading,  setPhoneNumber }) => {
   const { t } = useTranslation();
   const {
     handleSubmit,
@@ -28,19 +28,19 @@ const LoginForm = ({ onSubmit, loading, error, setPhoneNumber }) => {
   const isPhoneValid = mobile && validatePhone(mobile, countryCode);
 
   return (
-    <div className="flex justify-center items-center flex-col lg:flex-row mx-auto ">
+    <div className="flex  justify-center lg:justify-normal items-center flex-col lg:flex-row mx-auto  mt-15">
       {/* Left side image + title (mobile view) */}
-      <div className="flex items-center justify-center flex-none gap-2">
+      <div className="flex items-center justify-center md:justify-center flex-none gap-0 ml-15 lg:ml-0  px-10 sm:px-14 md:px-12 ">
         <img
           src={dolphinChild}
           alt="Path"
-          className="h-29 sm:h-48 md:h-48 lg:h-135 object-contain  lg:mb-6"
+          className="h-29 sm:h-48 md:h-48 lg:h-120 object-contain  lg:mb-6"
         />
         <FormTitle text={t("auth.loginToAccount")} isMobile />
       </div>
 
       {/* Right side form */}
-      <div className=" relative  ">
+      <div className=" relative  md:mt-4 ">
         <div className="flex justify-center ">
           <FormTitle text={t("auth.loginToAccount")} />
         </div>
@@ -63,12 +63,12 @@ const LoginForm = ({ onSubmit, loading, error, setPhoneNumber }) => {
             touchedFields={touchedFields}
           />
 
-          {/* Backend Error */}
-          {error && (
-            <p className="text-red-500 text-xs sm:text-sm text-right">
-              {error}
-            </p>
-          )}
+          {/* Backend Error
+          // {error && (
+          //   <p className="text-orangedeep text-xs sm:text-sm">
+          //     {error}
+          //   </p>
+          // )} */}
 
           {/* Submit Button */}
           <Button

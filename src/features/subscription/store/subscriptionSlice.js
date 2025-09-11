@@ -5,7 +5,7 @@ import { subscriptionRepository } from "../services/subscription.services";
 const handleError = async (error, thunkAPI) => {
   if (error.response && error.response.data) {
     return thunkAPI.rejectWithValue(
-      error.response.data.message || "Server error"
+      error.response.data.error || "Server error"
     );
   }
   return thunkAPI.rejectWithValue(error.message || "Unknown error");
@@ -26,10 +26,10 @@ export const fetchSubscriptions = createAsyncThunk(
 
 export const cancelSubscription = createAsyncThunk(
   "subscriptions/cancel",
-  async (id, thunkAPI) => {
+  async (subscriptionId, thunkAPI) => {
     try {
-      const res = await subscriptionRepository.cancel(id);
-      return res.data;
+      const res = await subscriptionRepository.cancel(subscriptionId);
+      return { ...res.data, id: subscriptionId };
     } catch (err) {
       return handleError(err, thunkAPI);
     }
@@ -65,7 +65,6 @@ export const changeGroupSubscription = createAsyncThunk(
   async ({ id, groupId }, thunkAPI) => {
     try {
       const res = await subscriptionRepository.changeGroup(id, groupId);
-      console.log("API data:", res.data); // This is the actual subscription object
       return res.data; // ← Return the nested data, not the whole response
     } catch (err) {
       return handleError(err, thunkAPI);
@@ -121,10 +120,15 @@ const subscriptionSlice = createSlice({
       // ===== Cancel =====
       .addCase(cancelSubscription.pending, handlePending)
       .addCase(cancelSubscription.fulfilled, (state, action) => {
+        console.log("cancelSubscription.fulfilled", action);
         state.loading = false;
-        state.items = state.items.map((s) =>
-          s.id === action.payload.id ? action.payload : s
-        );
+
+        const updated = action?.payload ?? null;
+        if (updated?.id) {
+          state.items = state.items.map((s) =>
+            s.id === updated.id ? { ...s, status: "cancelled" } : s
+          );
+        }
       })
       .addCase(cancelSubscription.rejected, handleRejected)
 
@@ -132,9 +136,12 @@ const subscriptionSlice = createSlice({
       .addCase(renewSubscription.pending, handlePending)
       .addCase(renewSubscription.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = state.items.map((s) =>
-          s.id === action.payload.id ? action.payload : s
-        );
+        const updated = action && action.payload ? action.payload : null;
+        if (updated && updated.id) {
+          state.items = state.items.map((s) =>
+            s.id === updated.id ? updated : s
+          );
+        }
       })
       .addCase(renewSubscription.rejected, handleRejected)
 

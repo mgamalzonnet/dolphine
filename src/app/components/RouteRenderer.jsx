@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
 import { AppLayout } from "@/components/layout";
 import withAuth from "@/features/auth/hoc/withAuth";
 import { Overlay, Spinner } from "@/components/feedback";
@@ -12,11 +11,11 @@ const RouteLoadingFallback = () => (
 );
 
 // Route renderer component
-const RouteRenderer = ({ route }) => {
+const RouteRenderer = ({ route, children }) => {
   const Component = route.element;
 
   if (!Component) {
-    return <Outlet />;
+    return children;
   }
 
   // For protected routes, wrap with authentication HOC
@@ -30,13 +29,9 @@ const RouteRenderer = ({ route }) => {
       {shouldUseLayout ? (
         <AppLayout>
           <ProtectedComponent />
-          <Outlet /> {/* 👈 nested routes تظهر هنا */}
         </AppLayout>
       ) : (
-        <>
-          <ProtectedComponent />
-          <Outlet />
-        </>
+        <ProtectedComponent />
       )}
     </Suspense>
   );

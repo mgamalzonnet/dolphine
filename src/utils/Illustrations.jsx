@@ -561,7 +561,7 @@ export const PackagesBorder = ({
 export const Star = ({
   width = "107",
   height = "108",
-  className = "",
+  className ,
   fill = "#0077B6",
 }) => (
   <svg
@@ -611,7 +611,7 @@ export const Star = ({
   </svg>
 );
 
-export const CardKite = ({ className = "", fill = "#0077B6" }) => (
+export const CardKite = ({ className , fill = "#0077B6" }) => (
   <svg
     className={className}
     width="158"
@@ -770,38 +770,38 @@ export const Pencel = ({ className }) => (
       <path
         d="M121.284 235.334C119.196 231.59 114.153 230.476 109.938 232.826L106.846 234.551L99.2583 238.782L106.775 252.261L117.455 246.306C121.67 243.955 123.372 239.079 121.284 235.334Z"
         stroke="black"
-        stroke-width="3"
-        stroke-miterlimit="10"
+        strokeWidth="3"
+        strokeMiterlimit="10"
       />
       <path
         d="M110.676 223.579C108.588 219.835 103.545 218.72 99.3293 221.071L91.7412 225.303L99.2583 238.782L106.846 234.55C111.062 232.199 112.764 227.323 110.676 223.579Z"
         stroke="black"
-        stroke-width="3"
-        stroke-miterlimit="10"
+        strokeWidth="3"
+        strokeMiterlimit="10"
       />
       <path
         d="M93.074 277.574L153.779 243.72L123.71 189.803L63.0056 223.657L93.074 277.574ZM99.2583 238.782L91.7412 225.303L99.3292 221.072C103.545 218.721 108.588 219.835 110.676 223.579C112.764 227.324 111.062 232.2 106.846 234.551L109.938 232.827C114.153 230.476 119.196 231.59 121.284 235.335C123.372 239.079 121.67 243.955 117.455 246.306L106.775 252.262L99.2583 238.782Z"
         stroke="black"
-        stroke-width="3"
-        stroke-miterlimit="10"
+        strokeWidth="3"
+        strokeMiterlimit="10"
       />
       <path
         d="M193.308 193.369C195.814 197.862 193.757 203.754 188.698 206.575C183.64 209.396 177.546 208.049 175.041 203.556L169.055 192.823C166.549 188.33 168.606 182.438 173.664 179.617C178.723 176.796 184.817 178.142 187.322 182.635M135.795 183.064L165.863 236.981L226.568 203.127L196.499 149.211L135.795 183.064Z"
         stroke="black"
-        stroke-width="3"
-        stroke-miterlimit="10"
+        strokeWidth="3"
+        strokeMiterlimit="10"
       />
       <path
         d="M104.307 133.539L98.1239 136.987L102.873 159.046L120.578 149.172L104.307 133.539Z"
         stroke="black"
-        stroke-width="3"
-        stroke-miterlimit="10"
+        strokeWidth="3"
+        strokeMiterlimit="10"
       />
       <path
         d="M103.013 158.968L105.626 171.582L102.873 159.046L120.578 149.172M103.013 158.968L102.732 159.124M103.013 158.968L98.2644 136.909L104.307 133.539L120.578 149.172M120.578 149.172L120.859 149.015M120.578 149.172L129.936 158.025M124.05 104.857L63.3459 138.711L93.4144 192.628L154.119 158.774L124.05 104.857Z"
         stroke="black"
-        stroke-width="3"
-        stroke-miterlimit="10"
+        strokeWidth="3"
+        strokeMiterlimit="10"
       />
     </g>
     <g clipPath="url(#clip1_834_688)">
@@ -928,5 +928,19 @@ export const VerticalLine = ({ className="" }) => (
 export const HorizontalLine = ({ className="" }) => (
   <svg className={className} width="650" height="2" viewBox="0 0 650 2" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="-2.49438e-05" y1="0.533203" x2="650" y2="0.500776" stroke="#185A80" strokeDasharray="8 8"/>
+  </svg>
+);
+
+export const Riyal = ({ className="", fill="#E89B32" }) => (
+  <svg className={className} width="33" height="36" viewBox="0 0 33 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_2593_1635)">
+    <path d="M20.5802 31.5938C20.0179 32.8487 19.6463 34.2105 19.5039 35.6386L31.4022 33.0927C31.9644 31.8381 32.3358 30.476 32.4785 29.0479L20.5802 31.5938Z" fill={fill}/>
+    <path d="M31.4041 25.4653C31.9663 24.2107 32.338 22.8486 32.4803 21.4205L23.212 23.4047V19.5903L31.4038 17.838C31.966 16.5834 32.3377 15.2213 32.4801 13.7932L23.2117 15.7757V2.05809C21.7915 2.86074 20.5302 3.92915 19.5049 5.18942V16.569L15.7982 17.3621V0.192383C14.378 0.994752 13.1167 2.06345 12.0915 3.32371V18.1548L3.79762 19.9289C3.23538 21.1835 2.86344 22.5456 2.72078 23.9737L12.0915 21.9692V26.7727L2.04894 28.9208C1.48669 30.1754 1.11504 31.5375 0.972656 32.9657L11.4844 30.7171C12.3401 30.538 13.0755 30.0287 13.5537 29.3279L15.4815 26.4511C15.6816 26.1534 15.7982 25.794 15.7982 25.4075V21.1761L19.5049 20.3831V28.0118L31.4041 25.4653Z" fill={fill}/>
+    </g>
+    <defs>
+    <clipPath id="clip0_2593_1635">
+    <rect width="31.5077" height="35.4462" fill="white" transform="translate(0.972656 0.192383)"/>
+    </clipPath>
+    </defs>
   </svg>
 );

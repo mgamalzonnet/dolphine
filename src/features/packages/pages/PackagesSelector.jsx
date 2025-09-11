@@ -1,73 +1,61 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { usePackages } from "../hooks/usePackages";
-import SearchFilterBar from "../components/SearchFilterBar";
+import PlansSearchBar from "../components/PlansSearchBar";
 import PlanCard from "../components/PlanCard";
 import PlansFooter from "../components/PlansFooter";
-import { Header } from "../../../components/layout";
+import { InfoIcon } from "@/utils/icons";
+import { Header } from "@/components/layout";
+import { HomeSupportBtn } from "@/components/layout";
+import FormatWithCurrency from "@/utils/formatWithCurrency";
 
 const DataPlanSelector = () => {
   const navigate = useNavigate();
   const { all } = usePackages();
 
   const [selectedPlanIds, setSelectedPlanIds] = React.useState([]);
-  const [filteredPlans, setFilteredPlans] = React.useState([]);
+  const [searchQuery, setSearchQuery] = React.useState("");
 
-  const getPackageIcon = React.useCallback((subjects) => {
-    if (!subjects || subjects.length === 0) return "📦";
-    const subjectName = subjects[0].name;
-    switch (subjectName) {
-      case "البرمجة":
-        return "💻";
-      case "الرياضيات":
-        return "🧮";
-      case "العلوم":
-        return "🔬";
-      case "اللغة العربية":
-        return "📖";
-      case "اللغة الإنجليزية":
-        return "🔤";
-      default:
-        return "📦";
-    }
-  }, []);
-
-  const formatPrice = React.useCallback((plan) => {
-    if (plan.discountPercentage > 0) {
-      return (
-        <div className="flex flex-col items-end">
-          <span className="text-orangedeep font-bold text-lg">
-            {plan.finalPrice} ريال
-          </span>
-          <span className="text-gray-400 line-through text-sm">
-            {plan.originalPrice} ريال
-          </span>
-          <span className="text-green-600 text-xs font-medium">
-            خصم {plan.discountPercentage}%
-          </span>
-        </div>
-      );
-    }
+const formatPrice = React.useCallback((plan) => {
+  if (plan.discountPercentage > 0) {
     return (
-      <span className="text-orangedeep font-bold text-lg">
-        {plan.finalPrice} ريال
-      </span>
+      <div className="flex flex-col items-end">
+        <FormatWithCurrency
+          amount={plan.finalPrice}
+          className="text-[#BA7C28] font-bold text-base"
+          symbolFill="#e89b32"
+          symbolClass="w-6 h-6"
+        />
+        <FormatWithCurrency
+          amount={plan.originalPrice}
+          className="text-gray-400 line-through text-base"
+          symbolFill="#e89b32"
+          symbolClass="w-6 h-6"
+        />
+        <span className="text-green-600 text-base font-medium">
+          خصم {plan.discountPercentage}%
+        </span>
+      </div>
     );
-  }, []);
+  }
+  return (
+    <FormatWithCurrency
+      amount={plan.finalPrice}
+      className="flex items-center gap-1 text-orangedeep font-bold text-lg"
+      symbolFill="#e89b32"
+      symbolClass="w-6 h-6"
+    />
+  );
+}, []);
 
-  const filterSource = React.useMemo(() => {
-    if (!Array.isArray(all)) return [];
-    return all.map((plan) => ({
-      ...plan,
-      title: plan.name || "",
-      instructor: plan.instructor || "",
-      group: plan.group || "",
-    }));
-  }, [all]);
-
-  React.useEffect(() => {
-    setFilteredPlans(filterSource);
-  }, [filterSource]);
+  const filteredPlans = React.useMemo(() => {
+    if (!Array.isArray(all) || all.length === 0) return [];
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return all;
+    return all.filter((plan) =>
+      (plan.name || "").toLowerCase().includes(query)
+    );
+  }, [all, searchQuery]);
 
   const handlePlanSelect = React.useCallback((planId) => {
     setSelectedPlanIds((current) => {
@@ -99,32 +87,29 @@ const DataPlanSelector = () => {
       state: {
         selectedPackages: selectedPlanDetails,
         totalPrice: totalPrice,
-        selectedCount: selectedPlanIds.length
-      }
+        selectedCount: selectedPlanIds.length,
+      },
     });
   }, [navigate, selectedPlanDetails, totalPrice, selectedPlanIds.length]);
 
-
-
   return (
-    <div className="min-h-screen  space-y-6">
+    <div className="min-h-svh  space-y-4">
       {/* Header */}
-  <Header title=" اختر باقتك المناسبة" balance={0}/>
+      <Header balance={"0"} title=" اختر باقتك المناسبة" onBack={"/manage-subscription"}/>
 
       {/* Search Bar */}
-      <SearchFilterBar
-        packages={filterSource}
-        onFilterChange={setFilteredPlans}
-        placeholder="ابحث عن باقة..."
+      <PlansSearchBar
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
 
       {/* Warning */}
       <div className=" mx-auto px-4 mt-4">
-        <div className="flex items-start gap-2 bg-red-50 p-3 rounded-lg border border-red-200">
-          <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-            <span className="text-red-600 text-sm font-bold">!</span>
+        <div className="flex items-center gap-1 p-3 rounded-lg  ">
+          <div className="w-6 h-6 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+            <InfoIcon />
           </div>
-          <p className="text-red-700 text-sm">
+          <p className="text-[#BF2323DE] text-sm">
             تنبيه: اذا كنت قد اشتركت من خلال موقعنا وقمت بالسداد، يرجى تجاهل
             الفترة التجريبية. سيتم تحديث اشتراكك لاحقاً من قبل خدمة العملاء
           </p>
@@ -135,9 +120,14 @@ const DataPlanSelector = () => {
       {selectedPlanIds.length > 0 && (
         <div className=" mx-auto px-4">
           <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-            <p className="text-blue-700 text-sm font-medium">
+            <p className="flex items-center gap-1 text-blue-700 text-sm font-medium">
               تم اختيار {selectedPlanIds.length} باقة(ات) - الإجمالي:{" "}
-              {totalPrice} ريال
+              <FormatWithCurrency 
+                amount={totalPrice}
+                className="flex items-center gap-1 text-blue-700 text-sm font-medium"
+                symbolFill="#1447e6"
+                symbolClass="w-4"
+              />
             </p>
           </div>
         </div>
@@ -151,7 +141,6 @@ const DataPlanSelector = () => {
             plan={plan}
             selected={selectedPlanIds.includes(plan.id)}
             onSelect={handlePlanSelect}
-            getPackageIcon={getPackageIcon}
             formatPrice={formatPrice}
           />
         ))}
@@ -165,7 +154,9 @@ const DataPlanSelector = () => {
         totalPrice={totalPrice}
         selectedCount={selectedPlanIds.length}
       />
+      <HomeSupportBtn />
     </div>
+    
   );
 };
 

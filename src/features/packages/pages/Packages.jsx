@@ -4,7 +4,7 @@ import { PackageCard } from "../components";
 import { usePackages } from "../hooks/usePackages";
 import notFoundPackages from "@/assets/images/notFoundPackages.png";
 
-import { packageFactory } from "../factory/packageFactory.js";
+// import { packageFactory } from "../factory/packageFactory.js";
 
 const Packages = () => {
   const { mine, loading } = usePackages();
@@ -12,10 +12,11 @@ const Packages = () => {
   if (loading) return null;
 
   return (
-    <div className="py-18 mt-20 md:py-18 px-4 sm:px-6 lg:px-10">
+
+    <div className="py-18 mt-10 md:py-18 px-4 sm:px-6 lg:px-10 lg:pt-30 ">
       {mine.length > 0 ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 py-8">
-          {mine.map((pkg) => {
+          {/* {mine.map((pkg) => {
             const { image, bgColor } = packageFactory(pkg.id);
             return (
               <PackageCard
@@ -23,18 +24,21 @@ const Packages = () => {
                 item={pkg}
                 color={bgColor}
                 image={image}
+                status={pkg.status}
+                daysRemaining={pkg.days_remaining}
               />
             );
-          })}
+          })} */}
         </div>
       ) : (
-        <div className="relative flex flex-col justify-center mine-center gap-4">
+        <div className="relative flex flex-col justify-center mine-center gap-4 mt-10 mr-20">
           <img
             src={notFoundPackages}
             alt="notFoundPackages"
-            className="w-full max-w-[450px] sm:max-w-[450px] md:max-w-[450px] lg:max-w-[450px] object-contain mx-auto pt-20"
+
+            className="w-full max-w-[300px] sm:max-w-[300px] md:max-w-[300px] lg:max-w-[300px] object-contain mx-auto "
           />
-          <div className=" ml-0 xs:ml-20">
+          <div className=" flex justify-center  ml-20 text-center xs:ml-20">
             <AddPackageBtn />
           </div>
         </div>

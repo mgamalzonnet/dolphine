@@ -1,6 +1,8 @@
 import { lazy } from "react";
 import DataPlanSelector from "../../features/packages/pages/PackagesSelector";
 import Checkout from "../../features/packages/pages/Checkout";
+import LoginSiblings from "../../features/auth/pages/LoginSiblings";
+import AddSiblingsPage from "../../features/auth/pages/AddSiblingsPage";
 
 // Lazy load components for better performance
 const HomePage = lazy(() => import("@/features/home"));
@@ -13,7 +15,6 @@ const ManageSubscription = lazy(() => import("@/features/subscription"));
 const PackageContent = lazy(() =>
   import("@/features/packages/pages/PackagesContent")
 );
-const Board = lazy(() => import("@/features/Board"));
 const LessonExercise = lazy(() =>
   import("@/features/lessons/pages/LessonExercise")
 );
@@ -60,8 +61,11 @@ const ForgotPasswordPage = lazy(() =>
     default: module.ForgotPasswordPage,
   }))
 );
-// const ProfilePage = lazy(() => import("@/features/profile/pages/ProfilePage"));
-// const BalanceDetails = lazy(() => import("@/features/profile/pages/BalanceDetails"));
+const ProfilePage = lazy(() => 
+  import("@/features/profile/pages/ProfilePage"));
+
+const BalanceDetails = lazy(() => 
+  import("@/features/balance/pages/BalanceDetails"));
 
 // Route Configuration
 export const routes = [
@@ -87,6 +91,8 @@ export const routes = [
       { path: "otp", element: OtpPage, public: true, layout: false },
       { path: "register", element: RegisterPage, public: true, layout: false },
       { path: "password", element: PasswordPage, public: true, layout: false },
+      { path: "siblings", element: LoginSiblings, public: true, layout: false },
+      { path: "add", element: AddSiblingsPage, public: true, layout: false },
       {
         path: "forgetpassword",
         element: ForgotPasswordPage,
@@ -123,8 +129,7 @@ export const routes = [
     path: "/manage-subscription",
     element: ManageSubscription,
     protected: true,
-    layout: false, // Checkout page has its own layout
-
+    layout: false,
   },
   {
     path: "/main-packages",
@@ -144,11 +149,7 @@ export const routes = [
     element: PackageContent,
     protected: true,
   },
-  {
-    path: "/board",
-    element: Board,
-    protected: true,
-  },
+
 
   // Nested Schedule Routes
   {
@@ -168,17 +169,18 @@ export const routes = [
     element: ShowLessons,
     protected: true,
   },
-  // {
-  //   path: "/profile",
-  //   element: ProfilePage,
-  //   // protected: true,
-  // },
-  // {
-  //   path: "/balance-details",
-  //   element: BalanceDetails,
-  //   protected: true,
-  // },
-
+  {
+    path: "/profile",
+    element: ProfilePage,
+    protected: true,
+    layout: false,
+  },
+  {
+    path: "/balance-details",
+    element: BalanceDetails,
+    protected: true,
+    layout: false,
+  },
 
 ];
 
