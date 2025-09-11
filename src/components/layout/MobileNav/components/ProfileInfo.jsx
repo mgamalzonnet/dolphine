@@ -12,15 +12,13 @@ const ProfileInfo = ({ isActive = false, onActivate }) => {
       to={"/profile"}
       onClick={onActivate}
     >
-      <div className="relative rounded-full border border-bordercolor/40 flex items-center justify-center overflow-hidden bg-white">
-
+      <div className="relative w-8 h-8 rounded-full border border-bordercolor/40  overflow-hidden bg-white">
         <img
           src={profileImg}
           alt="profile"
           className="w-8 h-8 object-contain text-center group-hover:scale-110 transition"
         />
       </div>
-
       <span
         className="text-xs sm:text-xs font-semibold"
         style={{ color: isActive ? "#1B648E" : "#7A8085" }}

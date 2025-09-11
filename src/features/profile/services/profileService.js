@@ -5,18 +5,9 @@ export const fetchProfile = async () => {
   return response.data.data; 
 };
 
-// export const addBrother = async (payload) => {
-//   const response = await api.post("/student/add-brother", payload);
-//   return response.data.data; 
-// };
-
-export const addBrother = async (formData) => {
-  const response = await api.post("/student/add-brother", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
-  return response.data.data;
+export const addBrother = async (payload) => {
+  const response = await api.post("/student/add-brother", payload);
+  return response.data.data; 
 };
 
 export const fetchClasses = async () => {
@@ -80,14 +71,3 @@ export const logoutApi = async () => {
 
   return true;
 };
-
-// Update Profile
-export const updateProfileApi = async (payload) => {
-  const body = {
-    ...payload,
-    _method: "PATCH",
-  }
-  const { data } = await api.post("student/update-profile", body);
-  return data;
-}
-

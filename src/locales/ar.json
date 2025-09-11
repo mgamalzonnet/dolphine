@@ -84,7 +84,8 @@
     "previewWeeklySchedule": "معاينة الجدول الأسبوعي"
   },
   "header": {
-    "balance": "الرصيد"
+    "balance": "الرصيد",
+    "currency": "ريال"
   },
   "modal": {
     "success": "نجح",
@@ -103,11 +104,9 @@
     "time": "الوقت",
     "remainingTime": "الوقت المتبقي",
     "defaultTeacher": "أ.حنان",
-    "saturday": "السبت",
     "sunday": "الأحد",
-    "monday": "الاثنين",
+    "mounday": "الاثنين",
     "tuesday": "الثلاثاء",
-    "wednesday": "الأربعاء",
     "thursday": "الخميس"
   },
   "packages": {
@@ -115,7 +114,7 @@
     "firstGroup": "المجموعة الاولى",
     "previewWeeklySchedule": "معاينة الجدول الأسبوعي",
     "weeklySchedule": "الجدول الأسبوعي",
-     "noLesson": "لا يوجد حصص لهذا الأسبوع"
+    "noLesson": "-"
   },
   "mobileNavigation": {
     "home": "الرئيسية",

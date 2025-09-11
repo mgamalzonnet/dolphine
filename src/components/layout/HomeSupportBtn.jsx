@@ -4,7 +4,7 @@ import whatsapp from "@/assets/images/whatsapp.svg";
 import telegram from "@/assets/images/telegram.svg";
 import youtube from "@/assets/images/youtube.svg";
 import snapchat from "@/assets/images/snapchat.svg";
-import LifeChat from "@/assets/images/message.svg";
+import message from "@/assets/images/message.svg";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 
 const HomeSupportBtn = ({ className }) => {
@@ -13,12 +13,11 @@ const HomeSupportBtn = ({ className }) => {
   const [radius, setRadius] = useState(70);
   // const radius = 90; // distance from center
 
-
   const buttons = isAuthenticated 
   ? [
       { icon: whatsapp, angle: -90, alt: "WhatsApp" },
       { icon: telegram, angle: -40, alt: "Telegram" },
-      { icon: LifeChat, angle: 10, alt: "LifeChat", onClick: () => window.$chatwoot.toggle() },
+      { icon: message, angle: 10, alt: "Message" },
   ]
   : [
       { icon: whatsapp, angle: -90, alt: "WhatsApp" },
@@ -37,17 +36,13 @@ const HomeSupportBtn = ({ className }) => {
         setRadius(100);
       }
     };
-    updateRadius();
-    window.addEventListener("resize", updateRadius);
-    return () => window.removeEventListener("resize", updateRadius);
-  }, []);
+      updateRadius(); 
+      window.addEventListener("resize", updateRadius);
+      return () => window.removeEventListener("resize", updateRadius);
+    }, []);
 
   return (
-    <div
-      className={
-        className ?? "fixed bottom-18 md:bottom-24 lg:bottom-24 right-0 z-50"
-      }
-    >
+    <div className={className ?? "fixed bottom-18 md:bottom-24 lg:bottom-24 right-0 z-50"}>
       <div className="relative w-18 h-18 mx-4 sm:mx-6">
         {/* Extra buttons */}
         {buttons.map((btn, i) => {
@@ -58,15 +53,12 @@ const HomeSupportBtn = ({ className }) => {
           return (
             <button
               key={i}
-              onClick={btn.onClick}
               className={`absolute w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 focus:outline-0 rounded-full bg-orangedeep shadow-lg flex items-center justify-center
                 transition-all duration-300
                 ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-0"}
               `}
               style={{
-                transform: `translate(${isOpen ? -x : 0}px, ${
-                  isOpen ? y : 0
-                }px)`,
+                transform: `translate(${isOpen ? -x : 0}px, ${isOpen ? y : 0}px)`,
               }}
             >
               <img src={btn.icon} alt={btn.alt} className="w-6 h-6" />

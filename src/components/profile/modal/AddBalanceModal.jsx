@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Divider from "../../ui/Divider";
 import { ArrowNext } from "@/utils/icons";
-import FormatWithCurrency from "@/utils/FormatWithCurrency";
+import { Riyal } from "@/utils/Illustrations";
 
 const AddBalanceModal = ({ isOpen, onClose, onSubmit }) => {
   const [amount, setAmount] = useState("");
@@ -46,13 +46,8 @@ const AddBalanceModal = ({ isOpen, onClose, onSubmit }) => {
               <div className="text-orangedeep text-sm md:text-2xl font-bold mt-2 flex items-center justify-center gap-2">
                 رصيدك الحالي: 
                 <div className="flex items-center gap-1">
-                  <FormatWithCurrency
-                    amount={0}
-                    fractionDigits={0}
-                    className="flex items-center gap-2"
-                    symbolFill="#e89b32" 
-                    symbolClass="w-4 md:w-6 lg:w-8"
-                  />
+                  <span>0</span>
+                  <Riyal className="w-4 md:w-6 lg:w-8"/>
                 </div>
               </div>
             </div>
@@ -79,13 +74,7 @@ const AddBalanceModal = ({ isOpen, onClose, onSubmit }) => {
               {amount && (
                   <p className="text-[#1C9C30] font-semibold text-sm md:text-lg">
                     إجمالي رصيدك مع الهدية :{" "}
-                    <FormatWithCurrency
-                      amount={Number(amount) * 1.2}
-                      fractionDigits={2} 
-                      symbolFill="#1C9C30"
-                      symbolClass="w-4 h-4 md:w-6 md:h-6"
-                      className="text-[#1C9C30]"
-                    />
+                    {Number(amount) + Number(amount) * 0.2} ريال
                   </p>
               )}
             </div>

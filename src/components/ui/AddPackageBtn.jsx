@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 import { Plus } from "../../utils/icons";
 
 const AddPackageBtn = () => {

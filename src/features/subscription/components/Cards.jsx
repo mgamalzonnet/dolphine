@@ -2,7 +2,6 @@ import React from "react";
 import Card from "./Card";
 
 export const Cards = React.memo(({ subscriptions }) => {
-
   return (
     // <div className="w-full grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-6 items-start mt-6 lg:mt-10">
     <div className="w-full columns-1 md:columns-1 lg:columns-2 gap-6 mt-6 lg:mt-10">

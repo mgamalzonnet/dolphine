@@ -4,35 +4,19 @@ import { ProfileCard } from '@/components';
 import { ProfileInputs } from '@/components';
 import { ProfileButtons } from '@/components';
 import { updateUserGrade } from '@/features/profile/store/profileSlice';
-// import flag from "@/assets/authentication/flag.svg";
+import flag from "@/assets/authentication/flag.svg";
 import ChangeGradeModal from '@/components/profile/modal/ChangeGradeModal';
-import { useProfile } from '../hooks/useProfile';
 
 const AccountInfo = ({ user }) => {
   const dispatch = useDispatch(); 
-  const { handleUpdateProfile } = useProfile();
-
-  const [name, setName] = useState(user?.name || "");
-  const [phone, setPhone] = useState(user?.phoneNumber || "");
+  const [name, setName] = useState("يوستينا صلاح");
+  const [phone, setPhone] = useState("09954321890");
   const [grade, setGrade] = useState(user?.gradeName || "");
-  const [gradeId, setGradeId] = useState(user?.grade || null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleConfirmGrade = async (gradeName, gradeId) => {
     setGrade(gradeName);
-    setGradeId(gradeId);
-    // await dispatch(updateUserGrade({ userId: user.id, gradeId }));
-    try {
-      await handleUpdateProfile({
-        name,
-        grade: gradeId,
-        _method: "PATCH",
-      });
-      setIsModalOpen(false);
-      setIsModalOpen(false); 
-    } catch (error) {
-      console.error("فشل تحديث الصف:", error);
-    }
+    await dispatch(updateUserGrade({ userId: user.id, gradeId }));
   };
 
   useEffect(() => {
@@ -48,12 +32,7 @@ const AccountInfo = ({ user }) => {
   };
   
   const handleSave = () => {
-    handleUpdateProfile({
-      name,
-      grade: gradeId,
-      _method: "PATCH",
-    });
-  };
+  }
 
   return (
     <>
@@ -99,7 +78,7 @@ const AccountInfo = ({ user }) => {
                 disabled
                 className="relative border-[#aaaaaa] border-[0.5px] px-10"
               />
-              {/* <img src={flag} alt="Country" className="absolute top-[52%] md:top-1/2 right-8 w-8 md:w-auto" /> */}
+              <img src={flag} alt="Country" className="absolute top-[52%] md:top-1/2 right-8 w-8 md:w-auto" />
             </div>
           </div>
 
